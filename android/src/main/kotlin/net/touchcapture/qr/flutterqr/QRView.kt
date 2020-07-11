@@ -121,6 +121,9 @@ class QRView(private val registrar: PluginRegistry.Registrar, id: Int) :
 
     private fun createBarCodeView(): BarcodeView? {
         val barcode = BarcodeView(registrar.activity())
+        var settings = barcode.cameraSettings
+        settings?.requestedCameraId = CameraInfo.CAMERA_FACING_FRONT
+        barcode.cameraSettings = settings
         barcode.decodeContinuous(
                 object : BarcodeCallback {
                     override fun barcodeResult(result: BarcodeResult) {
