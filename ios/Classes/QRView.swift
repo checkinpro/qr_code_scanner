@@ -23,7 +23,7 @@ public class QRView:NSObject,FlutterPlatformView {
     func isCameraAvailable(success: Bool) -> Void {
         if success {
             do {
-                try scanner?.startScanning(resultBlock: { codes in
+                try scanner?.startScanning(with: .front, resultBlock: { codes in
                     if let codes = codes {
                         for code in codes {
                             guard let stringValue = code.stringValue else { continue }
